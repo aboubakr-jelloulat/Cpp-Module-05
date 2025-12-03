@@ -36,10 +36,10 @@ DEPENDS := $(patsubst %.o,%.d,$(OBJ))
 
 $(OBJDIR)/%.o : %.cpp Makefile | $(OBJDIR)
 	@mkdir -p $(@D)
-	@$(call tidy_compilation,$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@)
+	@$(call foo,$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@)
 
 
-define tidy_compilation
+define foo
 	@printf "%s\e[K\n" "$(1)"
 	@$(1)
 	@printf "\e[A\e[K"
