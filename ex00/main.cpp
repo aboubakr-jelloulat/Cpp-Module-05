@@ -37,6 +37,31 @@ int main()
 	{
 		std::cerr << "\nException: " << ex.what() << std::endl;
 	}
+
+	std::cout << "\n\t**\t**\t**\n" << std::endl;
+
+	try
+	{
+		Bureaucrat b2("hei", 1337);
+
+	}
+	catch(std::exception& ex)
+	{
+		std::cerr << "\nException: " << ex.what() << std::endl;
+	}
+
+	std::cout << "\n\t**\t**\t**\n" << std::endl;
+
+	try
+	{
+		Bureaucrat b2("hei", -42);
+
+	}
+	catch(std::exception& ex)
+	{
+		std::cerr << "\nException: " << ex.what() << std::endl;
+	}
+	
 	
     return 0;
 }
