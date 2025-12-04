@@ -14,7 +14,7 @@ class Form
 
 public:
 	Form();
-	Form(std::string &name, int gd_required_to_sign, int gd_required_to_execute);
+	Form(const std::string &name, int gd_required_to_sign, int gd_required_to_execute);
 	Form(const Form &src);
 	Form &operator=(const Form &src);
 	virtual ~Form();

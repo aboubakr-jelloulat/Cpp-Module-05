@@ -1,13 +1,13 @@
 #include "Form.h"
 #include"Bureaucrat.h"
 
-Form::Form() : _name("ajelloul"), _is_signed(false),
+Form::Form() : _name("wati9a"), _is_signed(false),
 	_grade_required_to_sign(150), _grade_required_to_execute(150)
 {
 	std::cout << "Default constructor of Form called." << std::endl;
 }
 
-Form::Form(std::string &name, int gd_required_to_sign, int gd_required_to_execute)
+Form::Form(const std::string &name, int gd_required_to_sign, int gd_required_to_execute)
 	: _name(name), _is_signed(false), _grade_required_to_sign(gd_required_to_sign),
 	_grade_required_to_execute(gd_required_to_execute)
 {
@@ -79,11 +79,11 @@ int					Form::getGradeRequiredToExecute() const
 
 void	Form::beSigned(const Bureaucrat &bureaucrat)
 {
-	if (bureaucrat.getGrade() > _grade_required_to_sign)
-		throw Form::GradeTooLowException();
-	
 	if (_is_signed)
 		throw Form::FormAlreadySignedException();
+
+	if (bureaucrat.getGrade() > _grade_required_to_sign)
+		throw Form::GradeTooLowException();
 
 	this->_is_signed = true;
 }

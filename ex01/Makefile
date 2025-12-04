@@ -59,4 +59,22 @@ endif
 # Passing -march=native to the compiler tells it to make optimizations based on your specific CPU.
 
 
+
+
+perf : all
+	perf stat ./$(NAME)
+
+report:
+	perf report
+
+htop:
+	htop
+
+glances:
+	glances
+
+valgrind:
+	valgrind --leak-check=full ./$(NAME)
+
+
 .PHONY: all clean fclean re
