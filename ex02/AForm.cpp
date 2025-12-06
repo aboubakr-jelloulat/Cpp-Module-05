@@ -50,11 +50,15 @@ const char* AForm::GradeTooLowException::what() const throw()
 }
 
 
-const char* AForm::AFormAlreadySignedException::what() const throw()
+const char* AForm::FormAlreadySignedException::what() const throw()
 {
-	return "AForm already signed";
+	return "Form already signed";
 }
 
+const char* AForm::FormNotSignedException::what() const throw()
+{
+	return "Form not signed yet";
+}
 
 const std::string	&AForm::getName() const
 {
@@ -80,12 +84,21 @@ int					AForm::getGradeRequiredToExecute() const
 void	AForm::beSigned(const Bureaucrat &bureaucrat)
 {
 	if (_is_signed)
-		throw AForm::AFormAlreadySignedException();
+		throw AForm::FormAlreadySignedException();
 
 	if (bureaucrat.getGrade() > _grade_required_to_sign)
 		throw AForm::GradeTooLowException();
 
 	this->_is_signed = true;
+}
+
+void AForm::check(int excutor_grade) const
+{
+	if (excutor_grade > _grade_required_to_execute)
+		throw AForm::GradeTooLowException();
+	
+	if (!_is_signed)
+		throw AForm::FormNotSignedException();
 }
 
 
@@ -94,10 +107,9 @@ AForm::~AForm()
 	std::cout << "Destructor of AForm called." << std::endl;
 }
 
-
 std::ostream &operator<<(std::ostream &ss, const AForm &frm)
 {
-	return ss << "AForm : " << (frm.getIsSigned() ? "Signed " : "Unsigned ")
+	return ss << "Form : " << (frm.getIsSigned() ? "Signed " : "Unsigned ")
 		<< "name " << frm.getName() << " required sign grade "
 		<< frm.getGradeRequiredToSign() << " required execution grade "
 		<< frm.getGradeRequiredToExecute() << "." << std::endl; 

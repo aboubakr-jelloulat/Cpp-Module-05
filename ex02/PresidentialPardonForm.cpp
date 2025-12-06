@@ -2,18 +2,15 @@
 #include "Bureaucrat.h"
 
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Default", 25, 5), _grade("Default Grade")
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5), _target("Default")
 {
     std::cout << "Default constructor of PresidentialPardonForm called." << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Default", 25, 5), _target(target)
+PresidentialPardonForm::PresidentialPardonForm(std::string &target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
     std::cout << "Constructor of PresidentialPardonForm called." << std::endl;
-	if (grade > 150)
-		throw PresidentialPardonForm::GradeTooLowException();
-	else if (grade < 1)
-		throw PresidentialPardonForm::GradeTooHighException();
+
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : AForm(src)
@@ -27,22 +24,28 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 {
     std::cout << "Copy assignment operator of PresidentialPardonForm called." << std::endl;
 
-    if (this != src)
-        _target = src.target;
+    if (this != &src)
+        _target = src._target;
 
-    AForm::=operator(src);
+    AForm::operator=(src);
 
     return *this;
 }
 
 
-std::string &PresidentialPardonForm::getGrade()
+const std::string &PresidentialPardonForm::getTarget() const
 {
-    return _grade;
+    return _target;
 }
 
 
+void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
+{
+	check(executor.getGrade());
 
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+
+}
 
 const char *PresidentialPardonForm::GradeTooHighException::what() const throw()
 {
@@ -51,7 +54,13 @@ const char *PresidentialPardonForm::GradeTooHighException::what() const throw()
 
 const char *PresidentialPardonForm::GradeTooLowException::what() const throw()
 {
-	const char *ex = "Grade is too low.";
-    return ex;
+	return "Grade is too low.";
 }
 
+
+
+
+PresidentialPardonForm::~PresidentialPardonForm()
+{
+    std::cout << "Destructor of PresidentialPardonForm called." << std::endl;
+}

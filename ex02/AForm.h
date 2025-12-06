@@ -29,12 +29,12 @@ public:
 		const char* what() const throw();
 	};
 
-	struct AFormAlreadySignedException : public std::exception
+	struct FormAlreadySignedException : public std::exception
 	{
 		const char* what() const throw();
 	};
 
-	struct NotSignedYetException : public std::exception
+	struct FormNotSignedException : public std::exception
 	{
 		const char *what() const throw();
 	};
