@@ -59,6 +59,8 @@ endif
 # Passing -march=native to the compiler tells it to make optimizations based on your specific CPU.
 
 
+execute: all clean
+	./$(NAME)
 
 
 perf : all

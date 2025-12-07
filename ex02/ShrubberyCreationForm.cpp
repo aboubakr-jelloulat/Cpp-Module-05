@@ -1,6 +1,8 @@
 #include "Bureaucrat.h"
 #include "ShrubberyCreationForm.h"
 
+
+
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), _target("Default")
 {
 	std::cout << "Default constructor of ShrubberyCreationForm called." << std::endl;
@@ -40,7 +42,14 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 
 	check(executor.getGrade());
 
-	std::ofstream output_file(_target + "_shrubbery");
+	std::string filename = _target + "_shrubbery";
+	std::ofstream output_file(filename.c_str());
+
+	if (!output_file.is_open())
+	{
+		std::cerr << "Error: Could not create file" << std::endl;
+		return;
+	}
 
 	output_file << "^" << std::endl;
 	output_file << "*" << std::endl;
