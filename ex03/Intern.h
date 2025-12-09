@@ -15,7 +15,10 @@ public:
 	virtual ~Intern();
 
 	AForm *makeForm(const std::string &frmName, const std::string &frmTarget) const;
-
+	
+	
+	// factory design pattern
+	// a technique used to create objects dynamically based on some input (a string in this case)
 	struct FormType
 	{
 		std::string name;

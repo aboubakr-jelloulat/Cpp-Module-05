@@ -51,6 +51,7 @@ public:
 	void check(int excutor_grade) const;
 
     virtual void execute(const Bureaucrat &executor) const = 0;
+	virtual const std::string &getTarget() const = 0;
 
 };
 
