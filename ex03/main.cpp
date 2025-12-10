@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cassert>
 
 #include "AForm.h"
 #include "Bureaucrat.h"
