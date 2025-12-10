@@ -42,7 +42,7 @@ void	ShrubberyCreationForm_Test()
 	std::cout <<"\n\t*** LeRoi sign ShrubberyCreationForm  ***\n" << std::endl;
 	try
 	{
-		ShrubberyCreationForm frm_sh3("le Roi");
+		ShrubberyCreationForm frm_sh3("mo3ahada");
 		Bureaucrat LeRoi("LeRoi", 2);
 		LeRoi.signForm(frm_sh3);
 		frm_sh3.execute(LeRoi);

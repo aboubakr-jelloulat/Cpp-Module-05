@@ -21,7 +21,6 @@ int main()
 	try
 	{
 		Bureaucrat b2("borz", 100);
-		Bureaucrat b3(b2);
 
 		Form frm1("mo3ahadat soleh", 1, 2);
 		frm1.beSigned(b2);

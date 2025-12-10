@@ -22,7 +22,14 @@ public:
 	struct FormType
 	{
 		std::string name;
-		AForm *(*creator)(const std::string &);
+		AForm* (*creator)(const std::string &);
 	};
+
+	/*
+		AForm *	Function returns a pointer to AForm
+		(*creator)	creator is a pointer to a function
+		(const std::string &)	The function takes a reference to a string as parameter
+	
+	*/
 
 };

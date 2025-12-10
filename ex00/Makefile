@@ -29,11 +29,20 @@ fclean: clean
 
 re : fclean all
 
+# $(patsubst pattern,replacement,text)
 
 DEPENDS := $(patsubst %.o,%.d,$(OBJ))
 
--include $(DEPENDS)
+#build/main.o -> build/main.d
 
+
+
+-include $(DEPENDS)
+# -include = include if exists, but ignore errors if missing.
+
+
+# Pattern rule
+# First prerequisite
 $(OBJDIR)/%.o : %.cpp Makefile | $(OBJDIR)
 	@mkdir -p $(@D)
 	@$(call foo,$(CXX) $(CXXFLAGS) -MMD -MP -c $< -o $@)
